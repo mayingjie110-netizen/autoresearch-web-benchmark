@@ -64,7 +64,7 @@
 
 上传的是截至归档时实际已收集的全部项目产物。没有虚构未收集的完整网页聊天导出、每条发送时间、人工耗时、原始数据全量指纹或重复实验。未上传Python环境、下载缓存、训练数据、驱动、SSH私钥、令牌或跨项目全局记忆。
 
-两份Google参考HTML中的网站内嵌API key字符串仅在上传副本中遮盖，详见[PUBLICATION_REDACTIONS.json](archive_metadata/PUBLICATION_REDACTIONS.json)；实验原答、原补丁、原始日志不改写。本仓库初次创建为私有仓库。
+两份Google参考HTML中的网站内嵌API key字符串仅在上传副本中遮盖，详见[PUBLICATION_REDACTIONS.json](archive_metadata/PUBLICATION_REDACTIONS.json)；实验原答、原补丁、原始日志不改写。本仓库初次创建为私有仓库，2026-10-19按用户后续要求改为公开。
 
 ---
 

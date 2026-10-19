@@ -1,6 +1,6 @@
 # 本次实验GitHub归档
 
-2026-10-19，已核验上传到用户账户mayingjie110-netizen的私有仓库：
+2026-10-19，已核验上传到用户账户mayingjie110-netizen的仓库；按用户后续要求已改为公开：
 
 https://github.com/mayingjie110-netizen/autoresearch-web-benchmark
 
