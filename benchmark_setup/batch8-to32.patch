@@ -1,0 +1,6 @@
+diff --git a/train.py b/train.py
+--- a/train.py
++++ b/train.py
+@@ -468 +468 @@
+-DEVICE_BATCH_SIZE = 8    # exploratory 32 GB platform setting; total batch unchanged
++DEVICE_BATCH_SIZE = 32   # exploratory 32 GB platform setting; total batch unchanged

@@ -1,0 +1,22 @@
+这是第1/5轮真实运行反馈。
+
+补丁原样应用成功，退出码：0。
+
+最终汇总：
+val_bpb:          1.082689
+training_seconds: 300.7
+total_seconds:    342.5
+peak_vram_mb:     11702.0
+mfu_percent:      17.81
+total_tokens_M:   196.6
+num_steps:        375
+num_params_M:     50.3
+depth:            8
+
+本轮val_bpb严格低于共同基线1.164027，因此按规则保留改动。
+当前最佳val_bpb：1.082689。
+
+附件run_log.txt是完整原始日志，仅将run.log复制为可上传的.txt扩展名，文件内容未修改。
+附件next_train.py是第2轮唯一权威代码起点，补丁目标文件名仍为train.py。
+
+请提交第2/5轮：一个实验假设、一个可原样应用的git unified diff，以及判断假设所需观察的指标。继续遵守全部初始约束，不调用工具、不声称运行代码、不编造结果。提交后等待反馈。

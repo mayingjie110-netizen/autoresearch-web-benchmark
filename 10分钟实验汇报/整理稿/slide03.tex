@@ -1,0 +1,35 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{fontspec}
+\usepackage{booktabs,array}
+\usepackage[UTF8,fontset=fandol]{ctex}
+\setbeamertemplate{background}{}
+\setbeamertemplate{navigation symbols}{}
+\definecolor{Deep}{RGB}{0,62,94}
+\definecolor{Active}{RGB}{20,91,128}
+\definecolor{Pale}{RGB}{242,247,250}
+\definecolor{Orange}{RGB}{230,126,34}
+\begin{document}
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture,overlay,x=1cm,y=1cm]
+\coordinate (SW) at (current page.south west);
+\fill[Deep] (SW) ++(0,8.25) rectangle ++(16,.75);
+\fill[Active] (SW) ++(5.7,8.25) rectangle ++(4.6,.75);
+\node[white,font=\fontsize{10}{12}\selectfont] at ($(SW)+(2.9,8.63)$) {01 / 模型介绍};
+\node[white,font=\bfseries\fontsize{10}{12}\selectfont] at ($(SW)+(8,8.63)$) {02 / 实验设计};
+\node[white,font=\fontsize{10}{12}\selectfont] at ($(SW)+(13,8.63)$) {03 / 结果与证据};
+\node[anchor=west,text=Deep,font=\bfseries\fontsize{19}{23}\selectfont] at ($(SW)+(.75,7.62)$) {从 autoresearch 理念到本次实验};
+\node[anchor=west,text=Deep,font=\bfseries\fontsize{13}{17}\selectfont] at ($(SW)+(.85,6.52)$) {autoresearch：AI 自动化科研};
+\node[anchor=west,text=Deep,font=\fontsize{10}{14}\selectfont] at ($(SW)+(.85,5.85)$) {让 AI 参与提出想法、设计实验、运行验证与迭代改进。};
+\node[anchor=west,text=Deep,font=\fontsize{10}{14}\selectfont] at ($(SW)+(.85,5.27)$) {这一理念可用于多类科研任务，也有不同的系统与项目实现。};
+
+\draw[Deep!25] ($(SW)+(.85,4.73)$) -- ($(SW)+(15.15,4.73)$);
+\node[anchor=west,text=Deep,font=\bfseries\fontsize{13}{17}\selectfont] at ($(SW)+(.85,4.12)$) {本次 benchmark：基于 Karpathy 的开源项目};
+\node[anchor=west,text=Deep,font=\fontsize{10}{14}\selectfont] at ($(SW)+(.85,3.43)$) {选用 Andrej Karpathy 开源的同名项目 autoresearch，作为实验任务基础。};
+\node[anchor=west,text=Active,font=\fontsize{10}{14}\selectfont] at ($(SW)+(.85,2.85)$) {\href{https://github.com/karpathy/autoresearch}{GitHub：github.com/karpathy/autoresearch}};
+\node[anchor=west,text=Deep,font=\fontsize{10}{14}\selectfont] at ($(SW)+(.85,2.15)$) {任务：改进小型 GPT 的训练，在每次 5 分钟的预算内取得更好的验证结果。};
+\node[anchor=west,text=Deep,font=\fontsize{10}{14}\selectfont] at ($(SW)+(.85,1.53)$) {我们统一输入与人工执行流程，比较两款网页产品的科研迭代表现。};
+\end{tikzpicture}
+\end{frame}
+\end{document}

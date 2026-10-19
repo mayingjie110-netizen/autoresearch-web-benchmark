@@ -1,0 +1,6 @@
+# B3反馈状态
+
+反馈已准备，实际网页发送尚未确认。
+原始证据remote_evidence/；上传附件及粘贴文字feedback_to_gpt/。
+run_log.txt与远程run.log逐字节一致，SHA256=8cfa8ce6c34eb280084d0890c98a9ddb563f088176ab264a72d5ae634ef4ac27。
+next_train.py为回退后的B2最佳版本，SHA256=f1fd24154aa4f2e5af470dfb6093dd87e3a693830ed810174ec07b2ae15777df。

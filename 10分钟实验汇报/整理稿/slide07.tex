@@ -1,0 +1,62 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{fontspec}
+\usepackage{booktabs,array}
+\usepackage[UTF8,fontset=fandol]{ctex}
+\setbeamertemplate{background}{}
+\setbeamertemplate{navigation symbols}{}
+\definecolor{Deep}{RGB}{0,62,94}
+\definecolor{Active}{RGB}{20,91,128}
+\definecolor{Pale}{RGB}{242,247,250}
+\definecolor{Orange}{RGB}{230,126,34}
+\begin{document}
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture,overlay,x=1cm,y=1cm]
+\coordinate (SW) at (current page.south west);
+\fill[Deep] (SW) ++(0,8.25) rectangle ++(16,.75);
+\fill[Active] (SW) ++(10.7,8.25) rectangle ++(4.6,.75);
+\node[white,font=\fontsize{10}{12}\selectfont] at ($(SW)+(2.9,8.63)$) {01 / 模型介绍};
+\node[white,font=\bfseries\fontsize{10}{12}\selectfont] at ($(SW)+(8,8.63)$) {02 / 实验设计};
+\node[white,font=\fontsize{10}{12}\selectfont] at ($(SW)+(13,8.63)$) {03 / 结果与证据};
+\node[anchor=west,text=Deep,font=\bfseries\fontsize{19}{23}\selectfont] at ($(SW)+(.75,7.62)$) {五轮实验：策略、结果与耗时};
+\node[anchor=west,text=Deep,font=\fontsize{10}{14}\selectfont] at ($(SW)+(.85,6.77)$) {由于网页端需要人工传递文件与执行实验，本次每个产品各进行 5 轮。};
+\node[anchor=west,text=Deep,font=\bfseries\fontsize{13}{17}\selectfont] at ($(SW)+(.85,6.05)$) {Gemini 4 Argon};
+\node[anchor=west,text=Deep,font=\bfseries\fontsize{13}{17}\selectfont] at ($(SW)+(8.35,6.05)$) {GPT 6.1 Sol};
+\draw[Deep!18] ($(SW)+(8,1.65)$) -- ($(SW)+(8,6.2)$);
+\node[anchor=north west,inner sep=0,text=Deep,font=\fontsize{7}{10}\selectfont] at ($(SW)+(.85,5.62)$) {
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.0}
+\begin{tabular}{@{}c>{\raggedright\arraybackslash}p{2.5cm}rrc@{}}
+\toprule
+轮 & 策略 & \texttt{val\_bpb} & 耗时/s & 决定\\
+\midrule
+1 & 注意力窗口\newline SSSL $\to$ L & 1.083021 & 366.3 & 保留\\[1pt]
+2 & 总批量\newline $2^{19}\to2^{18}$ & 1.070800 & 337.8 & 保留\\[1pt]
+3 & 总批量\newline $2^{18}\to2^{17}$ & 1.041990 & 335.7 & 保留\\[1pt]
+4 & 总批量\newline $2^{17}\to2^{16}$ & 1.048104 & 334.7 & 回退\\[1pt]
+5 & 学习率衰减比例\newline $0.5\to0.7$ & 1.041009 & 335.4 & 保留\\
+\bottomrule
+\end{tabular}
+};
+\node[anchor=north west,inner sep=0,text=Deep,font=\fontsize{7}{10}\selectfont] at ($(SW)+(8.35,5.62)$) {
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.0}
+\begin{tabular}{@{}c>{\raggedright\arraybackslash}p{2.5cm}rrc@{}}
+\toprule
+轮 & 策略 & \texttt{val\_bpb} & 耗时/s & 决定\\
+\midrule
+1 & 注意力窗口\newline SSSL $\to$ L & 1.082689 & 342.5 & 保留\\[1pt]
+2 & 总批量\newline $2^{19}\to2^{17}$ & 1.043261 & 335.3 & 保留\\[1pt]
+3 & 总批量\newline $2^{17}\to2^{16}$ & 1.048139 & 334.5 & 回退\\[1pt]
+4 & 嵌入学习率\newline $0.6\to0.2$ & 1.043957 & 335.3 & 回退\\[1pt]
+5 & 学习率衰减比例\newline $0.5\to0.8$ & 1.042717 & 335.2 & 保留\\
+\bottomrule
+\end{tabular}
+};
+\node[anchor=west,text=Deep,font=\bfseries\fontsize{9}{12}\selectfont] at ($(SW)+(.85,1.05)$) {五轮运行合计：1,709.9 秒（28 分 29.9 秒）};
+\node[anchor=west,text=Deep,font=\bfseries\fontsize{9}{12}\selectfont] at ($(SW)+(8.35,1.05)$) {五轮运行合计：1,682.8 秒（28 分 2.8 秒）};
+\node[anchor=west,text=Deep!75,font=\fontsize{8}{11}\selectfont] at ($(SW)+(.85,.45)$) {耗时取日志 \texttt{total\_seconds}，含训练、编译与验证；不含网页等待、人工操作和前期准备。};
+\end{tikzpicture}
+\end{frame}
+\end{document}

@@ -1,0 +1,34 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{fontspec}
+\usepackage{booktabs,array}
+\usepackage[UTF8,fontset=fandol]{ctex}
+\setbeamertemplate{background}{}
+\setbeamertemplate{navigation symbols}{}
+\definecolor{Deep}{RGB}{0,62,94}
+\definecolor{Active}{RGB}{20,91,128}
+\definecolor{Pale}{RGB}{242,247,250}
+\definecolor{Orange}{RGB}{230,126,34}
+\begin{document}
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture,overlay,x=1cm,y=1cm]
+\coordinate (SW) at (current page.south west);
+\fill[Deep] (SW) ++(0,8.25) rectangle ++(16,.75);
+\fill[Active] (SW) ++(5.7,8.25) rectangle ++(4.6,.75);
+\node[white,font=\fontsize{10}{12}\selectfont] at ($(SW)+(2.9,8.63)$) {01 / 模型介绍};
+\node[white,font=\bfseries\fontsize{10}{12}\selectfont] at ($(SW)+(8,8.63)$) {02 / 实验设计};
+\node[white,font=\fontsize{10}{12}\selectfont] at ($(SW)+(13,8.63)$) {03 / 结果与证据};
+\node[anchor=west,text=Deep,font=\bfseries\fontsize{19}{23}\selectfont] at ($(SW)+(.75,7.62)$) {评价指标：验证集表现与改进幅度};
+\node[anchor=west,text=Deep,font=\bfseries\fontsize{15}{19}\selectfont] at ($(SW)+(.9,6.35)$) {\texttt{val\_bpb}：验证集每字节比特数};
+\node[anchor=east,text=Active,font=\bfseries\fontsize{13}{17}\selectfont] at ($(SW)+(15.1,6.35)$) {越低越好};
+\node[anchor=west,text=Deep,font=\fontsize{11}{15}\selectfont] at ($(SW)+(.9,5.48)$) {衡量模型预测验证文本时，每字节内容所需的平均比特数。};
+\node[anchor=west,text=Deep,font=\fontsize{11}{15}\selectfont] at ($(SW)+(.9,4.80)$) {直观理解：模型对真实文本的预测越有把握，数值越低。};
+
+\draw[Deep!20] ($(SW)+(.9,4.05)$) -- ($(SW)+(15.1,4.05)$);
+\node[anchor=west,text=Deep,font=\bfseries\fontsize{13}{17}\selectfont] at ($(SW)+(.9,3.40)$) {相对基线改进率};
+\node[text=Deep,font=\fontsize{16}{21}\selectfont] at ($(SW)+(8,2.27)$) {$\dfrac{\text{基线 BPB}-\text{实验 BPB}}{\text{基线 BPB}}\times100\%$};
+\node[anchor=west,text=Deep!75,font=\fontsize{10}{14}\selectfont] at ($(SW)+(.9,1.10)$) {正值表示改善；报告逐轮变化、五轮最佳值、最后候选值与最终保留值。};
+\end{tikzpicture}
+\end{frame}
+\end{document}

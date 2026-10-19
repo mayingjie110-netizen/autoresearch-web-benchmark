@@ -1,0 +1,29 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{fontspec}
+\usepackage[UTF8,fontset=fandol]{ctex}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{background}{}
+\definecolor{NEUBlue}{RGB}{0,62,94}
+\begin{document}
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture,overlay]
+\IfFileExists{../原始素材/NEU-封面背景.png}{%
+  \node[inner sep=0] at (current page.center) {\includegraphics[width=\paperwidth,height=\paperheight]{../原始素材/NEU-封面背景.png}};
+}{%
+  \fill[NEUBlue] (current page.south west) rectangle (current page.north east);
+  \node[text=white,font=\fontsize{18}{22}\selectfont] at ($(current page.center)+(0,2.5cm)$) {东北大学\quad NORTHEASTERN UNIVERSITY};
+}
+\fill[NEUBlue,opacity=.72,rounded corners=5pt]
+  ($(current page.center)+(-7cm,-1.65cm)$) rectangle
+  ($(current page.center)+(7cm,1.55cm)$);
+\node[text=white,align=center,text width=13.4cm,font=\bfseries\fontsize{20}{26}\selectfont]
+  at ($(current page.center)+(0,.5cm)$)
+  {Gemini 4 Argon 与 ChatGPT 6.1 Sol\\[9pt]Research 能力比较};
+\node[text=white,font=\fontsize{13}{17}\selectfont]
+  at ($(current page.center)+(0,-.95cm)$)
+  {姓名：张莉\qquad 学号：20237858};
+\end{tikzpicture}
+\end{frame}
+\end{document}

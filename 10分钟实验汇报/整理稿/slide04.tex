@@ -1,0 +1,54 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{fontspec}
+\usepackage{booktabs,array}
+\usepackage[UTF8,fontset=fandol]{ctex}
+\setbeamertemplate{background}{}
+\setbeamertemplate{navigation symbols}{}
+\definecolor{Deep}{RGB}{0,62,94}
+\definecolor{Active}{RGB}{20,91,128}
+\definecolor{Pale}{RGB}{242,247,250}
+\definecolor{Orange}{RGB}{230,126,34}
+\begin{document}
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture,overlay,x=1cm,y=1cm]
+\coordinate (SW) at (current page.south west);
+\fill[Deep] (SW) ++(0,8.25) rectangle ++(16,.75);
+\fill[Active] (SW) ++(5.7,8.25) rectangle ++(4.6,.75);
+\node[white,font=\fontsize{10}{12}\selectfont] at ($(SW)+(2.9,8.63)$) {01 / 模型介绍};
+\node[white,font=\bfseries\fontsize{10}{12}\selectfont] at ($(SW)+(8,8.63)$) {02 / 实验设计};
+\node[white,font=\fontsize{10}{12}\selectfont] at ($(SW)+(13,8.63)$) {03 / 结果与证据};
+\node[anchor=west,text=Deep,font=\bfseries\fontsize{19}{23}\selectfont] at ($(SW)+(.75,7.62)$) {实验环境与流程};
+\node[anchor=west,text=Deep!70,font=\fontsize{9}{13}\selectfont] at ($(SW)+(.85,6.85)$) {远程环境：Ubuntu 24.04；2 × RTX 5090（每张 32 GB），固定使用 GPU 0。};
+\node[anchor=west,text=Deep!70,font=\fontsize{9}{13}\selectfont] at ($(SW)+(.85,6.40)$) {软件：Python 3.11.17 ／ PyTorch 2.9.1+cu128；适配后显存占用约 13,024 MB。};
+\tikzset{stage/.style={draw=Deep!25,fill=Pale,rounded corners=2pt,align=left,inner sep=7pt,text=Deep},flow/.style={->,>=stealth,thick,draw=Active}}
+
+\node[stage,anchor=north west,text width=13.85cm,minimum height=1.65cm,fill=white] (packet) at ($(SW)+(.8,6.15)$) {
+{\bfseries\fontsize{10}{13}\selectfont 给两边模型的初始输入}\\[3pt]
+{\fontsize{8}{11}\selectfont \texttt{README.md}\quad\texttt{program.md}\quad\texttt{prepare.py}\quad\texttt{train.py}\\[2pt]
+\texttt{pyproject.toml}\quad\texttt{uv.lock}\quad\texttt{platform.patch}\quad\texttt{BENCHMARK\_RULES.md}}\\[2pt]
+{\fontsize{9}{12}\selectfont 八份相同附件 ＋ 统一提示词（包含共同基线结果）}
+};
+
+\node[anchor=west,text=Deep,font=\fontsize{10}{14}\selectfont] at ($(SW)+(.85,3.55)$) {两边各五轮，固定 GPU 0 交替串行，避免并行争用 CPU；回答与结果互不共享。};
+\node[stage,anchor=north west,text width=3.8cm,minimum height=1.65cm] (model) at ($(SW)+(.8,3.05)$) {
+{\bfseries\fontsize{10}{13}\selectfont 1\quad 模型提出改动}\\[3pt]
+{\fontsize{8}{11}\selectfont 一个实验假设\\一个代码补丁}
+};
+\node[stage,anchor=north west,text width=3.8cm,minimum height=1.65cm] (run) at ($(SW)+(5.85,3.05)$) {
+{\bfseries\fontsize{10}{13}\selectfont 2\quad 人工执行实验}\\[3pt]
+{\fontsize{8}{11}\selectfont 原样应用补丁，训练 300 秒\\指标改善则保留，否则回退}
+};
+\node[stage,anchor=north west,text width=3.8cm,minimum height=1.65cm] (feedback) at ($(SW)+(10.9,3.05)$) {
+{\bfseries\fontsize{10}{13}\selectfont 3\quad 原样反馈模型}\\[3pt]
+{\fontsize{8}{11}\selectfont 完整日志 \texttt{run\_log.txt}\\当前代码 \texttt{next\_train.py}}
+};
+
+\draw[flow] (model.east) -- (run.west);
+\draw[flow] (run.east) -- (feedback.west);
+\draw[flow] (feedback.south) -- ($(feedback.south)+(0,-.55)$) -| (model.south);
+\node[fill=white,text=Deep,font=\fontsize{9}{12}\selectfont,inner sep=4pt] at ($(SW)+(8,.65)$) {附退出码、保留／回退决定，模型据此提出下一轮改动};
+\end{tikzpicture}
+\end{frame}
+\end{document}

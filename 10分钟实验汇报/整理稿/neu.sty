@@ -1,0 +1,328 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{neu}[2025/01/03 v2.0 NEU Beamer Style]
+
+% Remove oversize warnings
+\RequirePackage{silence}
+\WarningFilter{hbox}{Overfull}
+
+% Graphicx support packages
+\RequirePackage{graphicx}
+\RequirePackage{pgf}
+\RequirePackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{shadows}
+\usetikzlibrary{calc}
+\usetikzlibrary{patterns}
+\usetikzlibrary{shapes}
+\usetikzlibrary{shapes.arrows}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{matrix}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{trees}
+\usetikzlibrary{fit}
+\usetikzlibrary{mindmap,shadows}
+\tikzset{
+	arrow/.style={-{Latex[length=2mm, width=1.5mm]}},
+	right arrow/.style={-{Latex[length=2mm, width=1.5mm]}},
+	back arrow/.style={{Latex[length=2mm, width=1.5mm]}-},
+}
+\tikzstyle{every text node part} = [font=\scriptsize]
+% \RequirePackage{fontawesome}
+\RequirePackage{hyperref}
+\RequirePackage{relsize}
+
+% Font, Text & Table support packages
+\RequirePackage{bm}
+\RequirePackage{bbm}
+\RequirePackage{amsmath}
+\RequirePackage{amsfonts}
+\RequirePackage{amssymb}
+\RequirePackage{algorithm}
+\RequirePackage{algpseudocode}
+\RequirePackage[table]{xcolor}
+
+% Font settings for items
+\setbeamerfont{normal text}{size=\small}
+\setbeamertemplate{itemize/enumerate body begin}{\normalsize}
+\setbeamertemplate{itemize/enumerate subbody begin}{\small}
+
+% Package parameters
+% Param setting begin
+\RequirePackage{ifthen}
+\RequirePackage{kvoptions}
+% Package Options
+\SetupKeyvalOptions{
+	family=neu,
+	prefix=neu@
+}
+\DeclareStringOption[en]{lang}
+\DeclareStringOption[full]{render}
+\DeclareStringOption[43]{aspectratio}
+
+\ProcessKeyvalOptions{neu}
+% Param setting end
+
+% Language-specific font settings
+\ifthenelse{\equal{\neu@lang}{en}}{%
+	% English language settings (default)
+	\usefonttheme{default}
+}{
+	\ifthenelse{\equal{\neu@lang}{zh}}{
+		\RequirePackage{fontspec}
+		\RequirePackage{ctex}
+		\setsansfont{Times New Roman}
+		\setCJKsansfont[ItalicFont={楷体},BoldFont={黑体}]{宋体}
+		\setbeamerfont{caption}{size=\scriptsize}
+	}{
+		% Invalid language option
+		\PackageError{neu}{Invalid language option. Use 'en' or 'zh'}{%
+			The language option must be either 'en' or 'zh'.%
+		}
+	}
+}
+
+\ifthenelse{\equal{\neu@render}{full}}{%
+	\def\draft{0}
+}{%
+	\ifthenelse{\equal{\neu@render}{draft}}{%
+		\def\draft{1}
+	}{
+		\PackageError{neu}{Invalid render option. Use 'full' or 'draft'}{
+			The render option must be either 'full' or 'draft'
+		}
+	}
+}
+
+% Setup materials for different aspectratio
+\ifthenelse{\equal{\neu@aspectratio}{169}}{
+	\pgfdeclareimage[width=\paperwidth,height=\paperheight]{bgtitlepage}{source/bg-titlepage169.png}
+	\pgfdeclareimage[width=\paperwidth,height=1cm]{bghead}{source/bg-head169.png}
+	\pgfdeclareimage[width=4cm, height=\paperheight]{bgleft}{source/bg-left169.png}
+	\def\neu@ContentLeftMargin{5cm}
+	\def\neu@ContentItemWidth{6cm}
+}{
+	\ifthenelse{\equal{\neu@aspectratio}{43}}{
+		\pgfdeclareimage[width=\paperwidth,height=\paperheight]{bgtitlepage}{source/bg-titlepage43.png}
+		\pgfdeclareimage[width=\paperwidth,height=1cm]{bghead}{source/bg-head43.png}
+		\pgfdeclareimage[width=4cm, height=\paperheight]{bgleft}{source/bg-left43.png}
+		\def\neu@ContentLeftMargin{4cm}
+		\def\neu@ContentItemWidth{5cm}
+	}{
+		\PackageError{neu}{Invalid aspectratio option. Use '169' or '43'}{
+			The asepctratio option must be either '169' or '43'
+		}
+	}
+}
+
+% Layout scheme for outer elements: split header and footer
+\useoutertheme{split}
+
+% Remove toolset
+\setbeamertemplate{navigation symbols}{}
+
+\setbeamertemplate{caption}[numbered]
+
+\setbeamersize{text margin left=.6cm, text margin right=.6cm}
+% Setup color scheme
+\RequirePackage{xcolor}
+
+\definecolor{main blue}{RGB}{0, 62, 94} % NEU Blue
+\definecolor{main red}{RGB}{255, 127, 80}
+\usecolortheme{whale}
+\usecolortheme[RGB={0,62,94}]{structure} % Color for links
+
+% Some useful color boards
+\definecolor{light blue}{HTML}{d8eef4}
+\definecolor{medium blue}{HTML}{9ed6e5}
+\definecolor{heavy blue}{HTML}{3dacca}
+\definecolor{super blue}{HTML}{2b788d}
+\definecolor{dark blue}{HTML}{184551}
+\definecolor{dark green}{HTML}{20B2AA}
+
+\definecolor{snowymint}{HTML}{E3F8D1}
+\definecolor{wepeep}{HTML}{FAD2D2}
+\definecolor{portafino}{HTML}{F5EE9D}
+\definecolor{plum}{HTML}{DCACEF}
+\definecolor{sail}{HTML}{A3CEEE}
+\definecolor{highland}{HTML}{6D885A}
+
+\definecolor{blue1}{RGB}{218,227,243}
+\definecolor{blue2}{RGB}{180,199,231}
+\definecolor{blue3}{RGB}{91,155,213}
+\definecolor{blue4}{RGB}{47,85,151}
+\definecolor{blue5}{RGB}{32,56,100}
+
+\definecolor{orange1}{RGB}{204,218,239}
+\definecolor{orange2}{RGB}{176,197,230}
+\definecolor{orange3}{RGB}{143,170,220}
+\definecolor{orange4}{RGB}{105,141,208}
+\definecolor{orange5}{RGB}{67,112,195}
+
+\definecolor{color1}{RGB}{254,67,101}
+\definecolor{color2}{RGB}{252,157,154}
+\definecolor{color3}{RGB}{249,205,173}
+\definecolor{color4}{RGB}{200,200,169}
+\definecolor{color5}{RGB}{131,175,155}
+
+\setbeamercolor{normal text}{fg=black}
+\setbeamercolor{frametitle}{fg=white, bg=main blue}
+\setbeamercolor{block title}{fg=white, bg=main blue}
+\setbeamercolor{block body}{fg=black, bg=main blue!10}
+\setbeamercolor{words in head/foot}{fg=white, bg=main blue}
+\setbeamercolor{title page}{fg=white, bg=main blue}
+\setbeamercolor{block title example}{fg=black, bg=main red}
+\setbeamercolor{block body example}{fg=black, bg=main red!10}
+\setbeamercolor{NEUBlueBox}{fg=white, bg=main blue}
+\setbeamercolor{NEURedBox}{fg=white, bg=main red}
+
+% Layout scheme for inner elements: rounded elements
+\useinnertheme[shadow]{rounded}
+
+%%%
+%%% Tweak definitions of inner theme to match personal preferences (MODIFY THESE)
+%%%
+
+% Itemize items: default (triangle), circle, square, ball
+\setbeamertemplate{itemize items}[circle]
+
+% Enumerate items: default, circle, square, ball
+\setbeamertemplate{enumerate items}[circle]
+
+% Outline: default, sections numbered, subsections numbered, circle, square, ball, ball unnumbered
+\setbeamertemplate{sections/subsections in toc}[sections numbered]
+
+% General blocks:
+\setbeamertemplate{blocks}[rounded]
+
+% Font Setting
+\usefonttheme[onlymath]{serif}
+
+% Background Setting
+\ifnum\draft=0
+	\setbeamertemplate{background}{
+		\tikz[remember picture, overlay]
+		\node[anchor=south east, inner sep=0, outer sep=0]at (current page.south east) {\includegraphics[width=4cm]{source/bg-corner.png};};
+	}
+\fi
+
+\pgfdeclarehorizontalshading[frametitle.bg,frametitle right.bg]{beamer@frametitleshade}{\paperheight}{%
+	color(0pt)=(frametitle.bg);
+	color(\paperwidth)=(frametitle right.bg)}
+
+\pgfdeclareverticalshading{beamer@topshade}{\paperwidth}{%
+	color(0pt)=(bg);
+	color(4pt)=(black!50!bg)
+}
+
+\defbeamertemplate*{footline}{neu theme}{%
+	\leavevmode%
+	\hbox{%
+		% Short author name
+		\begin{beamercolorbox}[wd=.15\paperwidth,ht=0.25cm,dp=1ex,center]{words in head/foot}%
+			\usebeamerfont{author in head/foot} \insertshortauthor
+		\end{beamercolorbox}%
+		% Short institute name
+		\begin{beamercolorbox}[wd=.15\paperwidth,ht=0.25cm,dp=1ex,center]{words in head/foot}%
+			\usebeamerfont{author in head/foot}\insertshortinstitute
+		\end{beamercolorbox}%
+		% Content navigation
+		\begin{beamercolorbox}[wd=.6\paperwidth,ht=0.25cm,dp=1ex,center]{words in head/foot}%
+			\usebeamerfont{author in head/foot} \insertsectionnavigationhorizontal{.6\textwidth}{}{}
+		\end{beamercolorbox}%
+		% Page number
+		\begin{beamercolorbox}[wd=0.1\paperwidth,ht=0.25cm,dp=1ex,right]{words in head/foot}%
+			\centering
+			\insertframenumber{} / \inserttotalframenumber\hspace{0.2cm}
+		\end{beamercolorbox}
+	}%
+	\vskip0pt%
+}
+% Remove all heading
+\setbeamertemplate{headline}{}
+
+% Setup 
+\defbeamertemplate*{frametitle}{neu theme}{
+	% \vskip -0.5em
+	\nointerlineskip
+	\begin{beamercolorbox}[wd=\paperwidth, ht=1cm, dp=1pt, left, sep=.2cm]{frametitle}
+		\ifnum\draft=0
+			\begin{tikzpicture}[remember picture, overlay]
+				\node[anchor=north west, opacity=1, inner sep=0, outer sep=0] at (current page.north west) {\pgfuseimage{bghead}};
+			\end{tikzpicture}
+		\fi
+		\usebeamerfont{frametitle} \insertframetitle
+	\end{beamercolorbox}
+	\vskip 0.5em
+}
+\defbeamertemplate*{title page}{neu theme}{
+	\leavevmode
+	\hbox{
+		\begin{tikzpicture}[overlay,remember picture]
+			\ifnum\draft=0
+				\node[opacity=1] at (current page.center){\pgfuseimage{bgtitlepage}};
+			\fi
+			\node[fill=main blue, rounded corners, opacity=0.7, minimum width=.8\paperwidth, minimum height=.4\paperheight, draw=main blue] at (current page.center) { ~};
+			\node[minimum width=.8\paperwidth, minimum height=.4\paperheight, align=center, text width=\paperwidth] at (current page.center) {
+			{\usebeamerfont{title}\inserttitle} \\
+			~ \\
+			{\usebeamerfont{author}\insertauthor} \\
+			~ \\
+			{\usebeamerfont{institute}\insertinstitute}
+			};
+		\end{tikzpicture}
+	}
+}
+\newcommand{\NEUInsertTitlePage}{
+	\begin{frame}[plain]
+		\titlepage
+		\addtocounter{framenumber}{-1}
+	\end{frame}
+
+}
+
+\setbeamertemplate{section in toc}{%
+	\leavevmode
+	\leftskip=\neu@ContentLeftMargin
+	\begin{tikzpicture}
+		\node[name=num, text=white, fill=main blue] {\small \inserttocsectionnumber};
+		\node[name=sectionname, anchor=south west, right=.2cm of num, text width=\neu@ContentItemWidth]{\Large \bfseries \inserttocsection};
+		\path[draw, very thick, main blue] let \p1=(num.south west), \p2=(sectionname.north east) in ($(\x1, \y1)+(-0.2cm, -0.2cm)$) |- ($(\x2, \y2)+(0.2cm, 0.2cm)$) |- cycle;
+	\end{tikzpicture}
+	\par}
+
+\newcommand{\NEUInsertContentPage}{
+	\begin{frame}[plain]
+		\begin{tikzpicture}[overlay, remember picture]
+			\node[fill=white, minimum width=\paperwidth, minimum height=\paperheight] at (current page.center) {~};
+			\node[anchor=west, inner sep=0, outer sep=0] at (current page.west) {\pgfuseimage{bgleft}};
+
+			\ifthenelse{\equal{\neu@lang}{zh}}{%
+				\node[anchor=west, inner sep=0, outer sep=0, align=center, minimum width=4cm, text=white] at (current page.west) {
+					\usebeamerfont{title}\textbf{目录}};
+			}{
+				\node[anchor=west, inner sep=0, outer sep=0, align=center, minimum width=4cm, text=white] at (current page.west) {\usebeamerfont{title} \textbf{Content} \\ ~ \\ \usebeamerfont{title}\textbf{Table}};
+			}
+		\end{tikzpicture}
+		\tableofcontents[hideallsubsections]
+		\addtocounter{framenumber}{-1}
+	\end{frame}
+}
+
+\newcommand{\NEUInsertThanksPage}[1]{
+	\begin{frame}[plain]
+		\begin{center}
+			\begin{minipage}{1\textwidth}
+				% \NEUInsertTextBox{#1}{NEURedBox}{0.80}
+				\begin{beamercolorbox}[wd=0.80\textwidth, rounded=true, shadow=true]{NEURedBox}
+					#1  \\
+				\end{beamercolorbox}
+			\end{minipage}
+		\end{center}
+	\end{frame}
+}
+
+\endinput

@@ -1,0 +1,16 @@
+[
+  {
+    "path": "10分钟实验汇报/原始素材/google-models.html",
+    "reason": "Google developer documentation HTML embedded frontend API key strings; publication copy only",
+    "replacements": 9,
+    "original_sha256": "2c7f642e717f55764166a40d8b709f52a46edfe97b3b65107a1179eb6ef4ba24",
+    "published_sha256": "f99c2628a900d7a24a1cca06e69d2be524a127320e324810c844728e0a7ac049"
+  },
+  {
+    "path": "10分钟实验汇报/原始素材/google-price.html",
+    "reason": "Google developer documentation HTML embedded frontend API key strings; publication copy only",
+    "replacements": 9,
+    "original_sha256": "c3bddca444941cc319e1590028e98cf3fc5304f9ccee09415346fdad47f6474b",
+    "published_sha256": "3f0b13a6b87af8978d1525eb2d914e9733d23c0c2df6e08ce3431014ef2ea1d4"
+  }
+]

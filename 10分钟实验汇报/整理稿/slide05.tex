@@ -1,0 +1,57 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{fontspec}
+\usepackage{booktabs,array}
+\usepackage[UTF8,fontset=fandol]{ctex}
+\setbeamertemplate{background}{}
+\setbeamertemplate{navigation symbols}{}
+\definecolor{Deep}{RGB}{0,62,94}
+\definecolor{Active}{RGB}{20,91,128}
+\definecolor{Pale}{RGB}{242,247,250}
+\definecolor{Orange}{RGB}{230,126,34}
+\begin{document}
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture,overlay,x=1cm,y=1cm]
+\coordinate (SW) at (current page.south west);
+\fill[Deep] (SW) ++(0,8.25) rectangle ++(16,.75);
+\fill[Active] (SW) ++(5.7,8.25) rectangle ++(4.6,.75);
+\node[white,font=\fontsize{10}{12}\selectfont] at ($(SW)+(2.9,8.63)$) {01 / 模型介绍};
+\node[white,font=\bfseries\fontsize{10}{12}\selectfont] at ($(SW)+(8,8.63)$) {02 / 实验设计};
+\node[white,font=\fontsize{10}{12}\selectfont] at ($(SW)+(13,8.63)$) {03 / 结果与证据};
+\node[anchor=west,text=Deep,font=\bfseries\fontsize{19}{23}\selectfont] at ($(SW)+(.75,7.62)$) {统一提示词：初始任务与逐轮反馈};
+\node[anchor=west,text=Deep,font=\bfseries\fontsize{12}{16}\selectfont] at ($(SW)+(.85,6.58)$) {初始提示词（节选）};
+\node[anchor=west,text=Deep,font=\bfseries\fontsize{12}{16}\selectfont] at ($(SW)+(8.35,6.58)$) {后续反馈模板（节选）};
+\draw[Deep!20] ($(SW)+(8,.75)$) -- ($(SW)+(8,6.68)$);
+\node[anchor=north west,text=Deep,text width=6.5cm,inner sep=0,font=\fontsize{7.5}{9}\selectfont] at ($(SW)+(.85,5.98)$) {
+\textbf{任务与预算}\\[2pt]
+通过五轮机会降低官方 \texttt{val\_bpb}。\\
+每轮只有一个实验想法，仅改 \texttt{train.py}；\\
+不新增依赖，不改变 300 秒预算或评价语义。\\[4pt]
+\textbf{工具与执行}\\[2pt]
+仅允许文字回复和读取上传附件；禁止调用工具。\\
+全部执行由人工完成，真实结果原样反馈。\\[4pt]
+\textbf{保留与失败}\\[2pt]
+有效分数严格降低则保留，否则回退。\\
+失败消耗一轮，修复占下一轮。\\[4pt]
+\textbf{每轮回复格式}\\[2pt]
+唯一假设、预期收益与风险；一个 unified diff；\\
+根据真实反馈应观察什么。提交后等待反馈。
+};
+\node[anchor=north west,text=Deep,text width=6.5cm,inner sep=0,font=\fontsize{7.5}{9}\selectfont] at ($(SW)+(8.35,5.98)$) {
+这是第【N】/5 轮真实反馈，仅属于你的实验。\\[4pt]
+本轮状态：【完成／补丁失败／崩溃／超时／违规】\\[2pt]
+补丁检查输出：【原文】\quad 退出码：【真实值】\\[2pt]
+运行日志：【完整原始附件】\\[2pt]
+最终汇总：【原样粘贴全部字段】\\[2pt]
+人工介入、偏离与可见违规：【如实记录】\\[2pt]
+保留决定：【保留／回退及依据】\\[2pt]
+当前最佳 \texttt{val\_bpb}：【值】\\[2pt]
+下一轮起点：【附当前最佳 \texttt{train.py}】\\[4pt]
+\textbf{N < 5：}基于反馈提交下一轮，\\
+仍只提出一个实验想法和一个补丁。\\[4pt]
+\textbf{N = 5：}总结已有证据，停止提交新补丁。
+};
+\end{tikzpicture}
+\end{frame}
+\end{document}

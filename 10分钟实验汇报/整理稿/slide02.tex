@@ -1,0 +1,38 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{fontspec}
+\usepackage{booktabs,array}
+\usepackage[UTF8,fontset=fandol]{ctex}
+\setbeamertemplate{background}{}
+\setbeamertemplate{navigation symbols}{}
+\definecolor{Deep}{RGB}{0,62,94}
+\definecolor{Active}{RGB}{20,91,128}
+\definecolor{Pale}{RGB}{242,247,250}
+\definecolor{Orange}{RGB}{230,126,34}
+\begin{document}
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture,overlay,x=1cm,y=1cm]
+\coordinate (SW) at (current page.south west);
+\fill[Deep] (SW) ++(0,8.25) rectangle ++(16,.75);
+\fill[Active] (SW) ++(5.7,8.25) rectangle ++(4.6,.75);
+\node[white,font=\fontsize{10}{12}\selectfont] at ($(SW)+(2.9,8.63)$) {01 / 模型介绍};
+\node[white,font=\bfseries\fontsize{10}{12}\selectfont] at ($(SW)+(8,8.63)$) {02 / 实验设计};
+\node[white,font=\fontsize{10}{12}\selectfont] at ($(SW)+(13,8.63)$) {03 / 结果与证据};
+\node[anchor=west,text=Deep,font=\bfseries\fontsize{19}{23}\selectfont] at ($(SW)+(.75,7.62)$) {API、Agent 与网页版的比较};
+\node[anchor=north west,inner sep=0,text=Deep,font=\fontsize{10}{15}\selectfont] at ($(SW)+(.8,6.65)$) {
+\setlength{\tabcolsep}{8pt}
+\renewcommand{\arraystretch}{1.65}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{1.8cm}>{\raggedright\arraybackslash}p{5.8cm}>{\raggedright\arraybackslash}p{5.8cm}@{}}
+\toprule[1pt]
+\textbf{方式} & \textbf{优点} & \textbf{缺点} \\
+\midrule[.5pt]
+\textbf{API} & 可自行设置提示词与参数；\newline 更便于控制模型比较条件 & 多轮、长上下文调用成本较高 \\[15pt]
+\textbf{Agent} & 功能全面，可自主调用工具；\newline 支持长时间连续执行任务 & Codex 与 Antigravity 的工具生态、\newline 模型适配不同，增加比较干扰 \\[15pt]
+\textbf{网页版} & 订阅成本较低；\newline 模型不直接接触实验环境 & 含产品内置提示词；\newline 内部配置难以完全控制 \\
+\bottomrule[1pt]
+\end{tabular}
+};
+\end{tikzpicture}
+\end{frame}
+\end{document}

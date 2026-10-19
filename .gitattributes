@@ -1,0 +1,2 @@
+# Preserve raw evidence byte-for-byte, including CR/LF within training logs.
+* -text

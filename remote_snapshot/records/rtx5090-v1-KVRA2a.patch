@@ -1,0 +1,61 @@
+diff --git a/train.py b/train.py
+index 2e74397..0b4b9e1 100644
+--- a/train.py
++++ b/train.py
+@@ -17,14 +17,31 @@ import torch
+ import torch.nn as nn
+ import torch.nn.functional as F
+ 
+-from kernels import get_kernel
+-cap = torch.cuda.get_device_capability()
+-# varunneal's FA3 is Hopper only, use kernels-community on non-Hopper GPUs
+-repo = "varunneal/flash-attention-3" if cap == (9, 0) else "kernels-community/flash-attn3"
+-fa3 = get_kernel(repo).flash_attn_interface
+-
+ from prepare import MAX_SEQ_LEN, TIME_BUDGET, Tokenizer, make_dataloader, evaluate_bpb
+ 
++
++def platform_attention(q, k, v, window_size):
++    """PyTorch SDPA adapter for equal-length causal self-attention (B, T, H, D)."""
++    left, right = window_size
++    assert left >= -1 and right == 0, "Only causal left windows are supported"
++    assert q.size(1) == k.size(1) == v.size(1), "Self-attention lengths must match"
++    seq_len = q.size(1)
++    q, k, v = (x.transpose(1, 2) for x in (q, k, v))
++    use_gqa = q.size(1) != k.size(1)
++    if left == -1 or left >= seq_len - 1:
++        out = F.scaled_dot_product_attention(
++            q, k, v, is_causal=True, dropout_p=0.0, enable_gqa=use_gqa,
++        )
++    else:
++        positions = torch.arange(seq_len, device=q.device)
++        distance = positions[:, None] - positions[None, :]
++        # FlashAttention includes both endpoints: i-left <= j <= i.
++        allowed = (distance >= 0) & (distance <= left)
++        out = F.scaled_dot_product_attention(
++            q, k, v, attn_mask=allowed, dropout_p=0.0, enable_gqa=use_gqa,
++        )
++    return out.transpose(1, 2)
++
+ # ---------------------------------------------------------------------------
+ # GPT Model
+ # ---------------------------------------------------------------------------
+@@ -90,7 +107,7 @@ class CausalSelfAttention(nn.Module):
+         q, k = apply_rotary_emb(q, cos, sin), apply_rotary_emb(k, cos, sin)
+         q, k = norm(q), norm(k)
+ 
+-        y = fa3.flash_attn_func(q, k, v, causal=True, window_size=window_size)
++        y = platform_attention(q, k, v, window_size)
+         y = y.contiguous().view(B, T, -1)
+         y = self.c_proj(y)
+         return y
+@@ -448,7 +465,7 @@ FINAL_LR_FRAC = 0.0     # final LR as fraction of initial
+ 
+ # Model size
+ DEPTH = 8               # number of transformer layers
+-DEVICE_BATCH_SIZE = 128  # per-device batch size (reduce if OOM)
++DEVICE_BATCH_SIZE = 8    # exploratory 32 GB platform setting; total batch unchanged
+ 
+ # ---------------------------------------------------------------------------
+ # Setup: tokenizer, model, optimizer, dataloader
+

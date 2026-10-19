@@ -1,0 +1,61 @@
+% Draft: user-provided model names are not yet mapped to official API IDs.
+\PassOptionsToPackage{table}{xcolor}
+\documentclass[aspectratio=169,10pt]{beamer}
+% Inline the NEU palette and layout so the editor needs no external neu.sty.
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{fontspec}
+\usepackage[UTF8,fontset=fandol]{ctex}
+\setbeamertemplate{background}{}
+\setbeamertemplate{navigation symbols}{}
+\definecolor{Deep}{RGB}{0,62,94}
+\definecolor{Active}{RGB}{20,91,128}
+\definecolor{Gray}{RGB}{82,101,117}
+\definecolor{Pale}{RGB}{242,247,250}
+\definecolor{Orange}{RGB}{230,126,34}
+\newcommand{\pending}{\textcolor{Gray}{待核实}}
+% The built-in compiler receives only this .tex file. Keep real screenshots
+% when local assets are available; otherwise show their recorded UI labels.
+\newcommand{\productimage}[2]{%
+\IfFileExists{#1}{\includegraphics[width=6.3cm,height=1.8cm,keepaspectratio]{#1}}{%
+\begin{tikzpicture}
+\fill[Pale,rounded corners=5pt] (0,0) rectangle (6.3,1.8);
+\draw[Deep!20,rounded corners=5pt] (0,0) rectangle (6.3,1.8);
+\node[text=Gray,font=\fontsize{9}{11}\selectfont] at (3.15,1.28) {Work 模式};
+\node[text=Deep,font=\bfseries\fontsize{14}{17}\selectfont] at (3.15,.72) {#2};
+\end{tikzpicture}}}
+\begin{document}
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture,overlay,x=1cm,y=1cm]
+\coordinate (SW) at (current page.south west);
+\fill[Deep] (SW) ++(0,8.25) rectangle ++(16,.75);
+\fill[Active] (SW) ++(.6,8.25) rectangle ++(4.6,.75);
+\node[white,font=\bfseries\fontsize{10}{12}\selectfont] at ($(SW)+(2.9,8.63)$) {01 / 模型介绍};
+\node[white,font=\fontsize{10}{12}\selectfont] at ($(SW)+(8,8.63)$) {02 / 实验设计};
+\node[white,font=\fontsize{10}{12}\selectfont] at ($(SW)+(13,8.63)$) {03 / 结果与证据};
+\node[anchor=west,text=Deep,font=\bfseries\fontsize{19}{23}\selectfont] at ($(SW)+(.75,7.62)$) {比较两款模型的科研迭代能力};
+\draw[Deep!25] ($(SW)+(.75,6.72)$) -- ($(SW)+(15.25,6.72)$);
+\node[anchor=west,text=Deep,font=\bfseries\fontsize{15}{18}\selectfont] at ($(SW)+(.85,6.24)$) {GPT-6.1 Sol};
+\node[anchor=west,text=Deep,font=\bfseries\fontsize{15}{18}\selectfont] at ($(SW)+(8.35,6.24)$) {Gemini 4 Argon};
+\node[anchor=west,text=Gray,font=\fontsize{9}{11}\selectfont] at ($(SW)+(.85,5.80)$) {OpenAI \enspace / \enspace 面向复杂编程与专业工作};
+\node[anchor=west,text=Gray,font=\fontsize{9}{11}\selectfont] at ($(SW)+(8.35,5.80)$) {Google DeepMind \enspace / \enspace 面向编程、数学与科学};
+\node[anchor=center,inner sep=0] at ($(SW)+(4.02,4.65)$) {\productimage{../原始素材/2026-10-19_Work_6.1-Sol-High.png}{6.1 Sol High}};
+\node[anchor=center,inner sep=0] at ($(SW)+(11.52,4.65)$) {\productimage{../原始素材/2026-10-19_Work_Argon.png}{Argon}};
+\draw[Deep!15] ($(SW)+(8,1.70)$) -- ($(SW)+(8,6.35)$);
+\node[anchor=north west,inner sep=0,text width=6.5cm,font=\fontsize{8.5}{11}\selectfont] at ($(SW)+(.85,3.35)$) {
+\begin{tabular}{@{}p{1.65cm}p{4.45cm}@{}}
+发布日期 & 2026年9月29日\\[3pt]
+API 价格 & 输入 \$2／输出 \$10\\[3pt]
+对应 Agent & Codex
+\end{tabular}};
+\node[anchor=north west,inner sep=0,text width=6.5cm,font=\fontsize{8.5}{11}\selectfont] at ($(SW)+(8.35,3.35)$) {
+\begin{tabular}{@{}p{1.65cm}p{4.45cm}@{}}
+发布日期 & 2026年10月13日\\[3pt]
+API 价格 & 输入 \$2／输出 \$10（优惠期）\\[3pt]
+对应 Agent & Google Antigravity
+\end{tabular}};
+\fill[Pale] ($(SW)+(.75,.76)$) rectangle ($(SW)+(15.25,1.46)$);
+\node[anchor=west,text=Deep,font=\bfseries\fontsize{9}{11}\selectfont] at ($(SW)+(1.0,1.11)$) {从官方评测走向实际任务：谁能提出、验证并迭代有效的训练改进？};
+\end{tikzpicture}
+\end{frame}
+\end{document}

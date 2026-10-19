@@ -1,0 +1,1 @@
+GPU0; uv run --locked --no-sync train.py; shared prepared environment; timeout TERM 600s / KILL +30s

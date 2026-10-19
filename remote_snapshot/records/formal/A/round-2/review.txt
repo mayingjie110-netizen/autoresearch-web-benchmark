@@ -1,0 +1,8 @@
+side=A
+round=2
+manual_rule_review=clean
+valid=yes
+candidate_val_bpb=1.070800
+decision=keep
+best_val_bpb=1.070800
+next_commit=73822f5fde5826a32c88af5519bd1fb0986ae819

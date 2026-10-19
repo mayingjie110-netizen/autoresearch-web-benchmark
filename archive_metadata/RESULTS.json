@@ -1,0 +1,222 @@
+[
+  {
+    "side": "A",
+    "round": 1,
+    "exit_code": 0,
+    "valid": "yes",
+    "manual_rule_review": "clean",
+    "decision": "keep",
+    "best_val_bpb": 1.083021,
+    "next_commit": "53b382b60bf6d81c46cd7f49ff9d946f70ca4432",
+    "metrics": {
+      "val_bpb": 1.083021,
+      "training_seconds": 300.0,
+      "total_seconds": 366.3,
+      "peak_vram_mb": 11702.0,
+      "mfu_percent": 17.79,
+      "total_tokens_M": 196.1,
+      "num_steps": 374.0,
+      "num_params_M": 50.3,
+      "depth": 8.0
+    },
+    "source": "remote_snapshot/records/formal/A/round-1/"
+  },
+  {
+    "side": "A",
+    "round": 2,
+    "exit_code": 0,
+    "valid": "yes",
+    "manual_rule_review": "clean",
+    "decision": "keep",
+    "best_val_bpb": 1.0708,
+    "next_commit": "73822f5fde5826a32c88af5519bd1fb0986ae819",
+    "metrics": {
+      "val_bpb": 1.0708,
+      "training_seconds": 300.2,
+      "total_seconds": 337.8,
+      "peak_vram_mb": 11702.0,
+      "mfu_percent": 17.68,
+      "total_tokens_M": 192.4,
+      "num_steps": 734.0,
+      "num_params_M": 50.3,
+      "depth": 8.0
+    },
+    "source": "remote_snapshot/records/formal/A/round-2/"
+  },
+  {
+    "side": "A",
+    "round": 3,
+    "exit_code": 0,
+    "valid": "yes",
+    "manual_rule_review": "clean",
+    "decision": "keep",
+    "best_val_bpb": 1.04199,
+    "next_commit": "b974902aeb47673f6827ba2ac4a89226a21af317",
+    "metrics": {
+      "val_bpb": 1.04199,
+      "training_seconds": 300.1,
+      "total_seconds": 335.7,
+      "peak_vram_mb": 11702.0,
+      "mfu_percent": 17.47,
+      "total_tokens_M": 188.7,
+      "num_steps": 1440.0,
+      "num_params_M": 50.3,
+      "depth": 8.0
+    },
+    "source": "remote_snapshot/records/formal/A/round-3/"
+  },
+  {
+    "side": "A",
+    "round": 4,
+    "exit_code": 0,
+    "valid": "yes",
+    "manual_rule_review": "clean",
+    "decision": "revert",
+    "best_val_bpb": 1.04199,
+    "next_commit": "b974902aeb47673f6827ba2ac4a89226a21af317",
+    "metrics": {
+      "val_bpb": 1.048104,
+      "training_seconds": 300.1,
+      "total_seconds": 334.7,
+      "peak_vram_mb": 11550.0,
+      "mfu_percent": 17.07,
+      "total_tokens_M": 183.8,
+      "num_steps": 2804.0,
+      "num_params_M": 50.3,
+      "depth": 8.0
+    },
+    "source": "remote_snapshot/records/formal/A/round-4/"
+  },
+  {
+    "side": "A",
+    "round": 5,
+    "exit_code": 0,
+    "valid": "yes",
+    "manual_rule_review": "clean",
+    "decision": "keep",
+    "best_val_bpb": 1.041009,
+    "next_commit": "47352d27cd16bc6ad0e0e35add55cf4ea0af43c1",
+    "metrics": {
+      "val_bpb": 1.041009,
+      "training_seconds": 300.1,
+      "total_seconds": 335.4,
+      "peak_vram_mb": 11702.0,
+      "mfu_percent": 17.44,
+      "total_tokens_M": 188.4,
+      "num_steps": 1437.0,
+      "num_params_M": 50.3,
+      "depth": 8.0
+    },
+    "source": "remote_snapshot/records/formal/A/round-5/"
+  },
+  {
+    "side": "B",
+    "round": 1,
+    "exit_code": 0,
+    "valid": "yes",
+    "manual_rule_review": "clean",
+    "decision": "keep",
+    "best_val_bpb": 1.082689,
+    "next_commit": "63f1adc6176e5c48eb4be04b1e7342a70ce8451b",
+    "metrics": {
+      "val_bpb": 1.082689,
+      "training_seconds": 300.7,
+      "total_seconds": 342.5,
+      "peak_vram_mb": 11702.0,
+      "mfu_percent": 17.81,
+      "total_tokens_M": 196.6,
+      "num_steps": 375.0,
+      "num_params_M": 50.3,
+      "depth": 8.0
+    },
+    "source": "remote_snapshot/records/formal/B/round-1/"
+  },
+  {
+    "side": "B",
+    "round": 2,
+    "exit_code": 0,
+    "valid": "yes",
+    "manual_rule_review": "clean",
+    "decision": "keep",
+    "best_val_bpb": 1.043261,
+    "next_commit": "659575bc6c5e95f98bfd4c280881c726d801c721",
+    "metrics": {
+      "val_bpb": 1.043261,
+      "training_seconds": 300.1,
+      "total_seconds": 335.3,
+      "peak_vram_mb": 11702.0,
+      "mfu_percent": 17.47,
+      "total_tokens_M": 188.7,
+      "num_steps": 1440.0,
+      "num_params_M": 50.3,
+      "depth": 8.0
+    },
+    "source": "remote_snapshot/records/formal/B/round-2/"
+  },
+  {
+    "side": "B",
+    "round": 3,
+    "exit_code": 0,
+    "valid": "yes",
+    "manual_rule_review": "clean",
+    "decision": "revert",
+    "best_val_bpb": 1.043261,
+    "next_commit": "659575bc6c5e95f98bfd4c280881c726d801c721",
+    "metrics": {
+      "val_bpb": 1.048139,
+      "training_seconds": 300.0,
+      "total_seconds": 334.5,
+      "peak_vram_mb": 11550.0,
+      "mfu_percent": 17.07,
+      "total_tokens_M": 183.7,
+      "num_steps": 2803.0,
+      "num_params_M": 50.3,
+      "depth": 8.0
+    },
+    "source": "remote_snapshot/records/formal/B/round-3/"
+  },
+  {
+    "side": "B",
+    "round": 4,
+    "exit_code": 0,
+    "valid": "yes",
+    "manual_rule_review": "clean",
+    "decision": "revert",
+    "best_val_bpb": 1.043261,
+    "next_commit": "659575bc6c5e95f98bfd4c280881c726d801c721",
+    "metrics": {
+      "val_bpb": 1.043957,
+      "training_seconds": 300.2,
+      "total_seconds": 335.3,
+      "peak_vram_mb": 11702.0,
+      "mfu_percent": 17.45,
+      "total_tokens_M": 188.6,
+      "num_steps": 1439.0,
+      "num_params_M": 50.3,
+      "depth": 8.0
+    },
+    "source": "remote_snapshot/records/formal/B/round-4/"
+  },
+  {
+    "side": "B",
+    "round": 5,
+    "exit_code": 0,
+    "valid": "yes",
+    "manual_rule_review": "clean",
+    "decision": "keep",
+    "best_val_bpb": 1.042717,
+    "next_commit": "0a3d31f77aa98549ece299e1541c9710565b3bce",
+    "metrics": {
+      "val_bpb": 1.042717,
+      "training_seconds": 300.1,
+      "total_seconds": 335.2,
+      "peak_vram_mb": 11702.0,
+      "mfu_percent": 17.45,
+      "total_tokens_M": 188.5,
+      "num_steps": 1438.0,
+      "num_params_M": 50.3,
+      "depth": 8.0
+    },
+    "source": "remote_snapshot/records/formal/B/round-5/"
+  }
+]

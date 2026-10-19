@@ -1,0 +1,25 @@
+这是第4/5轮真实运行反馈。
+
+补丁原样应用成功，退出码：0。
+运行日志显示 Gradient accumulation steps: 1。
+最后一步原始记录：
+step 02803 (100.0%) | loss: 2.936259 | lrm: 0.00 | dt: 108ms | tok/sec: 609,582 | mfu: 17.1% | epoch: 1 | remaining: 0s
+
+最终汇总：
+val_bpb:          1.048104
+training_seconds: 300.1
+total_seconds:    334.7
+peak_vram_mb:     11550.0
+mfu_percent:      17.07
+total_tokens_M:   183.8
+num_steps:        2804
+num_params_M:     50.3
+depth:            8
+
+本轮val_bpb未严格低于此前最佳1.041990，因此回退改动。
+当前最佳val_bpb：1.041990。
+
+附件run.log是完整原始日志。
+附件next_train.py是第5轮唯一权威代码起点，补丁目标文件名仍为train.py。
+
+请提交第5/5轮，也是最后一轮：一个实验假设、一个可原样应用的git unified diff，以及判断假设所需观察的指标。继续遵守全部初始约束，不调用工具、不声称运行代码、不编造结果。提交后等待反馈。
